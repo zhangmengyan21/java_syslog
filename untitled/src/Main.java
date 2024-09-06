@@ -5,11 +5,6 @@ import com.sun.jna.Pointer;
 import org.apache.commons.lang3.time.StopWatch;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -46,7 +41,7 @@ public class Main {
 
         String msg = stringBuilder.toString();
         
-        byte[] arr = encode("server_" + iServerId);
+        byte[] arr = encode("server_1");
         Pointer tag = new Memory(arr.length);
         tag.write(0, arr, 0, arr.length);
 
@@ -63,8 +58,8 @@ public class Main {
         System.out.println(STRING_LENGTH + ":" + sw.getTime(TimeUnit.MILLISECONDS));
     }
     
-    private static byte[] encode(String message) {
-        byte[] src = message.getBytes(StandardCharsets.UTF_8);
+    private static byte[] encode(String str) {
+        byte[] src = str.getBytes(StandardCharsets.UTF_8);
         byte[] dest = new byte[src.length + 1];
         System.arraycopy(src, 0, dest, 0, src.length);
         dest[dest.length - 1] = 0;
